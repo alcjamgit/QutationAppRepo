@@ -165,7 +165,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -236,6 +235,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QuotationApp.Core\QuotationApp.Core.csproj">
+      <Project>{4cbfca9a-98f9-4086-b18f-59820148e0c5}</Project>
+      <Name>QuotationApp.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuotationApp.Infrastructure\QuotationApp.Infrastructure.csproj">
+      <Project>{862cd501-d4ca-48bb-a59b-10f0fc935d91}</Project>
+      <Name>QuotationApp.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

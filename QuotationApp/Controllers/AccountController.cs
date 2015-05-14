@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using QuotationApp.Web.Models;
+using QuotationApp.Infrastructure.DataLayer;
 
 namespace QuotationApp.Web.Controllers
 {

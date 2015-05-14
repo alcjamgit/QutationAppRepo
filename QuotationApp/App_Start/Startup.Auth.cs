@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using QuotationApp.Web.Models;
+using QuotationApp.Infrastructure.DataLayer;
 
 namespace QuotationApp.Web
 {
