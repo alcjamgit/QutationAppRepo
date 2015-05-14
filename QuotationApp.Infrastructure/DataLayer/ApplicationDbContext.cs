@@ -7,6 +7,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using QuotationApp.Core.Entities;
 using QuotationApp.Core.Specifications;
 using System;
+using QuotationApp.Infrastructure.BusinessLayer;
 
 namespace QuotationApp.Infrastructure.DataLayer
 {
@@ -18,6 +19,13 @@ namespace QuotationApp.Infrastructure.DataLayer
         public ApplicationDbContext()
             : base("AppDbConnection", throwIfV1Schema: false)
         {
+            _curUserService = new CurrentUserService();
+        }
+
+        public ApplicationDbContext(ICurrentUserService curUserService)
+            : base("AppDbConnection", throwIfV1Schema: false)
+        {
+            _curUserService = curUserService;
         }
 
         public static ApplicationDbContext Create()
@@ -28,6 +36,7 @@ namespace QuotationApp.Infrastructure.DataLayer
         public DbSet<QuotationLineItem> QuotationLineItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Quotation> Quotations { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

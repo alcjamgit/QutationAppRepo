@@ -11,6 +11,7 @@ namespace QuotationApp.Core.Entities
 {
     public class QuotationLineItem: IAuditable
     {
+        [Index(IsClustered = false)]
         public Guid Id { get; set; }
 
         public Guid Quotation_Id { get; set; }
@@ -19,6 +20,7 @@ namespace QuotationApp.Core.Entities
         public int MinOrderQty { get; set; }
         public string UnitOfMeasure { get; set; }
         public decimal QuotedPrice { get; set; }
+        public int SortOrder { get; set; }
 
         public string CreatedBy { get; set; }
         public DateTime CreateDate { get; set; }
@@ -27,6 +29,7 @@ namespace QuotationApp.Core.Entities
 
         [ForeignKey("Product_Id")]
         public virtual Product Product { get; set; }
+
         [ForeignKey("Quotation_Id")]
         public virtual Quotation Quotation { get; set; }
     }
