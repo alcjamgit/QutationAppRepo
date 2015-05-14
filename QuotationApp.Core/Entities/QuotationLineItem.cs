@@ -14,7 +14,7 @@ namespace QuotationApp.Core.Entities
         [Index(IsClustered = false)]
         public Guid Id { get; set; }
 
-        public Guid Quotation_Id { get; set; }
+        public int Quotation_Id { get; set; }
         [StringLength(128)]
         public string Product_Id { get; set; }
         public int MinOrderQty { get; set; }

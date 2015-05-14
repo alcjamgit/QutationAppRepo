@@ -1,12 +1,12 @@
 namespace QuotationApp.Infrastructure.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using QuotationApp.Infrastructure.DataLayer;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using QuotationApp.Infrastructure.DataLayer;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
 
     internal sealed class Configuration : DbMigrationsConfiguration<QuotationApp.Infrastructure.DataLayer.ApplicationDbContext>
     {
@@ -15,12 +15,12 @@ namespace QuotationApp.Infrastructure.Migrations
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(QuotationApp.Infrastructure.DataLayer.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             SeedAdminUsers(context);
         }
 
-                /// <summary>
+        /// <summary>
         /// Seed admin user
         /// </summary>
         /// <param name="context"></param>

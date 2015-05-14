@@ -8,6 +8,8 @@ using QuotationApp.Core.Entities;
 using QuotationApp.Core.Specifications;
 using System;
 using QuotationApp.Infrastructure.BusinessLayer;
+using System.Web;
+using System.Security.Principal;
 
 namespace QuotationApp.Infrastructure.DataLayer
 {
@@ -19,13 +21,14 @@ namespace QuotationApp.Infrastructure.DataLayer
         public ApplicationDbContext()
             : base("AppDbConnection", throwIfV1Schema: false)
         {
-            _curUserService = new CurrentUserService();
+            //_curUserService = new CurrentUserService(HttpContext.Current.User.Identity);
         }
 
-        public ApplicationDbContext(ICurrentUserService curUserService)
+        public ApplicationDbContext(string userName)
             : base("AppDbConnection", throwIfV1Schema: false)
         {
-            _curUserService = curUserService;
+            _curUserService = new CurrentUserService();
+            _curUserService.UserName = userName;
         }
 
         public static ApplicationDbContext Create()
@@ -56,12 +59,12 @@ namespace QuotationApp.Infrastructure.DataLayer
                     auditableEntity.State == EntityState.Modified)
                 {
                     auditableEntity.Entity.ModifiedDate = DateTime.Now;
-                    auditableEntity.Entity.ModifiedBy = _curUserService.UserID;
+                    auditableEntity.Entity.ModifiedBy = _curUserService.UserName;
 
                     if (auditableEntity.State == EntityState.Added)
                     {
                         auditableEntity.Entity.CreateDate = DateTime.Now;
-                        auditableEntity.Entity.CreatedBy = _curUserService.UserID;
+                        auditableEntity.Entity.CreatedBy = _curUserService.UserName;
                     }
                     else
                     {

@@ -3,10 +3,24 @@ namespace QuotationApp.Infrastructure.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Customers",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 128),
+                        Email = c.String(nullable: false, maxLength: 128),
+                        CreatedBy = c.String(),
+                        CreateDate = c.DateTime(nullable: false),
+                        ModifiedBy = c.String(),
+                        ModifiedDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.Products",
                 c => new
@@ -25,11 +39,12 @@ namespace QuotationApp.Infrastructure.Migrations
                 c => new
                     {
                         Id = c.Guid(nullable: false),
-                        Quotation_Id = c.Guid(nullable: false),
+                        Quotation_Id = c.Int(nullable: false),
                         Product_Id = c.String(maxLength: 128),
                         MinOrderQty = c.Int(nullable: false),
                         UnitOfMeasure = c.String(),
                         QuotedPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        SortOrder = c.Int(nullable: false),
                         CreatedBy = c.String(),
                         CreateDate = c.DateTime(nullable: false),
                         ModifiedBy = c.String(),
@@ -38,6 +53,7 @@ namespace QuotationApp.Infrastructure.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Products", t => t.Product_Id)
                 .ForeignKey("dbo.Quotations", t => t.Quotation_Id)
+                .Index(t => t.Id)
                 .Index(t => t.Quotation_Id)
                 .Index(t => t.Product_Id);
             
@@ -45,13 +61,16 @@ namespace QuotationApp.Infrastructure.Migrations
                 "dbo.Quotations",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
+                        Customer_Id = c.Int(nullable: false),
                         CreatedBy = c.String(),
                         CreateDate = c.DateTime(nullable: false),
                         ModifiedBy = c.String(),
                         ModifiedDate = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Customers", t => t.Customer_Id)
+                .Index(t => t.Customer_Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -130,6 +149,7 @@ namespace QuotationApp.Infrastructure.Migrations
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.QuotationLineItems", "Quotation_Id", "dbo.Quotations");
+            DropForeignKey("dbo.Quotations", "Customer_Id", "dbo.Customers");
             DropForeignKey("dbo.QuotationLineItems", "Product_Id", "dbo.Products");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
@@ -137,8 +157,10 @@ namespace QuotationApp.Infrastructure.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Quotations", new[] { "Customer_Id" });
             DropIndex("dbo.QuotationLineItems", new[] { "Product_Id" });
             DropIndex("dbo.QuotationLineItems", new[] { "Quotation_Id" });
+            DropIndex("dbo.QuotationLineItems", new[] { "Id" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
@@ -147,6 +169,7 @@ namespace QuotationApp.Infrastructure.Migrations
             DropTable("dbo.Quotations");
             DropTable("dbo.QuotationLineItems");
             DropTable("dbo.Products");
+            DropTable("dbo.Customers");
         }
     }
 }

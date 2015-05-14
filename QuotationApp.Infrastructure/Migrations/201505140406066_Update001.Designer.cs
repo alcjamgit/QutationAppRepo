@@ -7,13 +7,13 @@ namespace QuotationApp.Infrastructure.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class Update01 : IMigrationMetadata
+    public sealed partial class Update001 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Update01));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Update001));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505140140487_Update01"; }
+            get { return "201505140406066_Update001"; }
         }
         
         string IMigrationMetadata.Source
