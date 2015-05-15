@@ -1,0 +1,28 @@
+﻿@model IEnumerable<QuotationApp.Web.Models.ProductIndexVm>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Producut List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(col => col.Id);
+               columns.Add(col => col.Description);
+               columns.Add(col => col.UnitOfMeasure);
+               columns.Add(col => col.Discontinued);
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink("Edit", "Edit", "Product", new { id = o.Id }, null));
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Product", new { id = o.Id }, null));
+           }).Filterable().Sortable(true).WithPaging(ViewBag.PageSize)
+@section scripts{
+    <script src="~/Scripts/gridmvc.min.js"></script>
+}
+@section styles{
+
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+}

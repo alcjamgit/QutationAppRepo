@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<QuotationApp.Web.Models.QuotationIndexVm>
 @using GridMvc.Html
 @{
+    
     ViewBag.Title = "Index";
     
 }
 
-<h2>Index</h2>
+<h2>Quotation List</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,12 +14,14 @@
 @Html.Grid(Model).Columns(columns =>
            {
                columns.Add(col => col.Id);
-               columns.Add(col => col.CustomerName);
-               columns.Add(col => col.CustomerReference);
-               columns.Add(col => col.CreatedBy);
-               columns.Add(col => col.CreateDate);
+               columns.Add(col => col.CustomerName).Titled("Customer");
+               columns.Add(col => col.CustomerReference).Titled("Customer");
+               columns.Add(col => col.CreatedBy).Titled("Created By");
+               columns.Add(col => col.CreateDate).Titled("Created");
                columns.Add(col => col.Status);
-           }).Filterable().Sortable(true).WithPaging(10)
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink("Edit", "Edit", "Quotation", new { id = o.Id }, null));
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Quotation", new { id = o.Id }, null));
+           }).Filterable().Sortable(true).WithPaging(ViewBag.PageSize)
 
 @*<table class="table">
     <tr>

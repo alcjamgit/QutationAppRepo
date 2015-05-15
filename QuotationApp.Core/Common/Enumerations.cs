@@ -21,5 +21,16 @@ namespace QuotationApp.Core.Common
             SentToCustomer = 3,
 
         }
+
+        public enum UnitOfMeasure
+        {
+            [Description("PCS")]
+            Pieces = 0,
+            [Description("BOXES")]
+            Boxes = 1,
+            [Description("KGS")]
+            Kilos = 2,
+
+        }
     }
 }
