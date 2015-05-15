@@ -66,6 +66,33 @@ namespace QuotationApp.Web.Controllers
 
             return View(model);
         }
+
+        public ActionResult Edit(int id)
+        {
+            var model = from q in _db.Quotations
+                        join c in _db.Customers on
+                        q.Customer_Id equals c.Id
+                        orderby q.Id
+                        where q.Id == id
+                        select new QuotationEditLineItemsVm()
+                        {
+                            Id = q.Id,
+                            CustomerName = c.Name,
+                            CustomerReference = q.CustomerReference,
+                            Status = q.Status,
+                            LineItems = q.QuotationLineItems.Select(l => new QuotationLinesVm
+                                {
+                                    Product_Id = l.Product_Id,
+                                    MinOrderQty = l.MinOrderQty,
+                                    QuotedPrice =l.QuotedPrice,
+                                    UnitOfMeasure = l.UnitOfMeasure
+                                }
+                            ).AsQueryable()
+                        };
+
+            return View(model);
+        }
+
         public ActionResult Create() 
         {
 
