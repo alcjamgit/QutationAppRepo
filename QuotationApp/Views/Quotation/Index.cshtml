@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<QuotationApp.Web.Models.QuotationIndexVm>
 @using GridMvc.Html
+@using Newtonsoft.Json
 @{
     
     ViewBag.Title = "Index";
@@ -23,60 +24,19 @@
                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Quotation", new { id = o.Id }, null));
            }).Filterable().Sortable(true).WithPaging(ViewBag.PageSize)
 
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerReference)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerReference)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>*@
 @section scripts{
-    <script src="~/Scripts/gridmvc.min.js"></script>  
+    <script src="~/Scripts/gridmvc.min.js"></script> 
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var viewModel = ko.mapping.fromJS(@Html.Raw(JsonConvert.SerializeObject(Model)));
+            ko.applyBindings(viewModel);
+        });
+    </script>
+
 }
 @section styles{
   

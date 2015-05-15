@@ -47,7 +47,25 @@ namespace QuotationApp.Web.Controllers
             
             return View(model);
         }
+        public ActionResult IndexJson()
+        {
+            IQueryable<QuotationIndexVm> model = from q in _db.Quotations
+                                                 join c in _db.Customers on
+                                                 q.Customer_Id equals c.Id
+                                                 orderby q.Id
+                                                 select new QuotationIndexVm
+                                                 {
+                                                     Id = q.Id,
+                                                     CustomerName = c.Name,
+                                                     CustomerReference = q.CustomerReference,
+                                                     Status = q.Status,
+                                                     CreateDate = q.CreateDate,
+                                                     CreatedBy = q.CreatedBy,
+                                                 };
+            
 
+            return View(model);
+        }
         public ActionResult Create() 
         {
 
