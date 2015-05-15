@@ -1,0 +1,94 @@
+﻿@model IEnumerable<QuotationApp.Web.Models.QuotationIndexVm>
+@using Newtonsoft.Json
+@using QuotationApp.Web.Extensions
+@{
+    ViewBag.Title = "IndexJson";
+}
+
+<h2>IndexJson</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Gift name</th>
+            <th>Price</th>
+            <th />
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: quotations">
+        <tr>
+            <td><input class="required" data-bind="value: Id, uniqueName: true" /></td>
+            <td><input class="required number" data-bind="value: CustomerName, uniqueName: true" /></td>
+            <td><a href="#" data-bind="click: $root.RemoveQuote">Delete</a></td>
+        </tr>
+    </tbody>
+</table>
+<button data-bind="click: AddQuote">Add Gift</button>
+<button data-bind="click: Save">Post to Server</button>
+
+
+
+@section scripts{
+    <script src="~/Scripts/gridmvc.min.js"></script>
+    <script src="~/Scripts/knockout-3.3.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+
+    <script type="text/javascript">
+    $(function () {
+        var QuotationModel = function(quotes){
+            var self = this;
+            self.quotations = ko.observableArray(quotes);
+            self.AddQuote = function(){
+
+                self.quotations.push({
+                    Id: self.GenerateGuid(),
+                    CustomerName:"",
+                });
+
+            }
+
+            self.RemoveQuote = function (quote) {
+                self.quotations.remove(quote);
+            };
+
+            self.GenerateGuid = function () {
+                var guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+                return guid;
+            }
+            self.Save = function(){
+                alert(self.quotations);
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Index2", "KnockoutGrid")",
+                        data: ko.toJSON(self.quotations),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data) {
+                                alert(ko.toJSON(data));
+                            }
+                        }
+                    });
+                }
+
+        };
+
+        viewModel = new QuotationModel(@Html.Raw(Model.ToJson()));
+        ko.applyBindings(viewModel);
+
+    });
+
+    </script>
+
+}
+@section styles{
+
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+}
