@@ -14,7 +14,6 @@ namespace QuotationApp.Core.Entities
         [Index(IsClustered = false)]
         public Guid Id { get; set; }
 
-        public int Quotation_Id { get; set; }
         [StringLength(128)]
         public string Product_Id { get; set; }
         public int MinOrderQty { get; set; }
@@ -30,7 +29,6 @@ namespace QuotationApp.Core.Entities
         [ForeignKey("Product_Id")]
         public virtual Product Product { get; set; }
 
-        [ForeignKey("Quotation_Id")]
-        public virtual Quotation Quotation { get; set; }
+
     }
 }

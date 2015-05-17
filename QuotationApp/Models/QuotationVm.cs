@@ -28,6 +28,39 @@ namespace QuotationApp.Web.Models
 
     }
 
+    public class QuotationIndexVm2
+    {
+        [DisplayName("Quote ID")]
+        public int Id { get; set; }
+
+        [DisplayName("Part Number"), Required]
+        public string Product_Id { get; set; }
+        [DisplayName("Part Description"), Required]
+        public string Product_Description { get; set; }
+
+        [DisplayName("Min Order"), Required]
+        public int MinOrderQty { get; set; }
+        [DisplayName("Unit of Measure"), Required]
+        public string UnitOfMeasure { get; set; }
+        public decimal QuotedPrice { get; set; }
+
+        [DisplayName("Customer")]
+        public string CustomerName { get; set; }
+        [DisplayName("Customer Reference")]
+        [StringLength(128)]
+        public string CustomerReference { get; set; }
+        [StringLength(64)]
+        public string Status { get; set; }
+
+        [DisplayName("Created By")]
+        public string CreatedBy { get; set; }
+        [DisplayName("Create Date")]
+        public DateTime CreateDate { get; set; }
+        public IEnumerable<SelectListItem> Customers { get; set; }
+
+    }
+
+
     public class QuotationCreateVm
     {
         [DisplayName("Customer"), Required]

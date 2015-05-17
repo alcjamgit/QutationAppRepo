@@ -108,6 +108,10 @@
     <Compile Include="Migrations\201505150136204_Update005.Designer.cs">
       <DependentUpon>201505150136204_Update005.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505171443042_Upadate006.cs" />
+    <Compile Include="Migrations\201505171443042_Upadate006.Designer.cs">
+      <DependentUpon>201505171443042_Upadate006.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -139,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505150136204_Update005.resx">
       <DependentUpon>201505150136204_Update005.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505171443042_Upadate006.resx">
+      <DependentUpon>201505171443042_Upadate006.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
