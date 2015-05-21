@@ -28,13 +28,31 @@ namespace QuotationApp.Web.Controllers
             _curUserService = new CurrentUserService();
         }
 
+        //public ActionResult Index()
+        //{
+        //    IQueryable<QuotationIndexVm> model = from q in _db.Quotations
+        //                                         join c in _db.Customers on
+        //                                         q.Customer_Id equals c.Id
+        //                                         orderby q.Id
+        //                                         select new QuotationIndexVm
+        //                                         {
+        //                                            Id = q.Id,
+        //                                            CustomerName = c.Name,
+        //                                            CustomerReference = q.CustomerReference,
+        //                                            Status = q.Status,
+        //                                            CreateDate = q.CreateDate,
+        //                                            CreatedBy = q.CreatedBy,
+        //                                         };
+        //    ViewBag.PageSize = 2;
+            
+        //    return View(model);
+        //}
+
         public ActionResult Index()
         {
             IQueryable<QuotationIndexVm2> model = from q in _db.Quotations
-                                                 join c in _db.Customers on
-                                                 q.Customer_Id equals c.Id
                                                  orderby q.Id
-                                                  select new QuotationIndexVm2
+                                                 select new QuotationIndexVm2
                                                  {
                                                     Id = q.Id,
                                                     Product_Id = q.Product_Id,
@@ -43,6 +61,7 @@ namespace QuotationApp.Web.Controllers
                                                     QuotedPrice = q.QuotedPrice,
                                                     CustomerName = c.Name,
                                                     CustomerReference = q.CustomerReference,
+                                                     
                                                     Status = q.Status,
                                                     CreateDate = q.CreateDate,
                                                     CreatedBy = q.CreatedBy,
@@ -51,6 +70,7 @@ namespace QuotationApp.Web.Controllers
             
             return View(model);
         }
+
         public ActionResult IndexJson()
         {
             IQueryable<QuotationIndexVm> model = from q in _db.Quotations
