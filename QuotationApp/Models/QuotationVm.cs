@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QuotationApp.Core.Common;
 
 namespace QuotationApp.Web.Models
 {
@@ -63,6 +64,16 @@ namespace QuotationApp.Web.Models
 
     public class QuotationCreateVm
     {
+        [DisplayName("Part Number"), Required]
+        public string Product_Id { get; set; }
+
+        [DisplayName("Min Order"), Required]
+        public int MinOrderQty { get; set; }
+        [DisplayName("Unit of Measure"), Required]
+        public Enumerations.UnitOfMeasure UnitOfMeasure { get; set; }
+        [DisplayName("Quoted Price"), Required]
+        public decimal QuotedPrice { get; set; }
+
         [DisplayName("Customer"), Required]
         public int Customer_Id { get; set; }
         [DisplayName("Customer Reference")]
@@ -70,7 +81,9 @@ namespace QuotationApp.Web.Models
         public string CustomerReference { get; set; }
         [StringLength(128)]
         public string Comments { get; set; }
+
         public IEnumerable<SelectListItem> CustomerSelectList { get; set; }
+        public IEnumerable<SelectListItem> ProductList { get; set; }
         public IEnumerable<HttpPostedFileBase> PostedFile { get; set; }
 
     }

@@ -30,13 +30,17 @@ namespace QuotationApp.Web.Controllers
 
         public ActionResult Index()
         {
-            IQueryable<QuotationIndexVm> model = from q in _db.Quotations
+            IQueryable<QuotationIndexVm2> model = from q in _db.Quotations
                                                  join c in _db.Customers on
                                                  q.Customer_Id equals c.Id
                                                  orderby q.Id
-                                                 select new QuotationIndexVm
+                                                  select new QuotationIndexVm2
                                                  {
                                                     Id = q.Id,
+                                                    Product_Id = q.Product_Id,
+                                                    Product_Description = q.Product.Description,
+                                                    MinOrderQty = q.MinOrderQty,
+                                                    QuotedPrice = q.QuotedPrice,
                                                     CustomerName = c.Name,
                                                     CustomerReference = q.CustomerReference,
                                                     Status = q.Status,
@@ -79,6 +83,8 @@ namespace QuotationApp.Web.Controllers
 
             var model = new QuotationCreateVm();
             model.CustomerSelectList = new SelectList(_db.Customers.AsQueryable(), "Id", "Name");
+            model.ProductList = new SelectList(_db.Products.AsQueryable(), "Id", "Description");
+            model.UnitOfMeasure = Enumerations.UnitOfMeasure.Pieces;
             return View(model);
         }
 
@@ -91,7 +97,10 @@ namespace QuotationApp.Web.Controllers
             {
                 var model = new Quotation()
                 {
+                    Product_Id = quoteVm.Product_Id,
+                    QuotedPrice = quoteVm.QuotedPrice,
                     Customer_Id = quoteVm.Customer_Id,
+                    UnitOfMeasure = (int)quoteVm.UnitOfMeasure,
                     CustomerReference = quoteVm.CustomerReference,
                     Comments = quoteVm.Comments,
                     Status = Enumerations.QuotationStatus.Created.GetDescription()

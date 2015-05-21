@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QuotationApp.Web.Models.QuotationIndexVm>
+﻿@model IEnumerable<QuotationApp.Web.Models.QuotationIndexVm2>
 @using GridMvc.Html
 @using Newtonsoft.Json
 @{
@@ -15,8 +15,12 @@
 @Html.Grid(Model).Columns(columns =>
            {
                columns.Add(col => col.Id);
+               columns.Add(col => col.Product_Id).Titled("Part Number");
+               columns.Add(col => col.Product_Description).Titled("Part Description");
+               columns.Add(col => col.QuotedPrice).Titled("Price");
+               columns.Add(col => col.MinOrderQty).Titled("Min Order Qty");
                columns.Add(col => col.CustomerName).Titled("Customer");
-               columns.Add(col => col.CustomerReference).Titled("Customer");
+               columns.Add(col => col.CustomerReference).Titled("Reference");
                columns.Add(col => col.CreatedBy).Titled("Created By");
                columns.Add(col => col.CreateDate).Titled("Created");
                columns.Add(col => col.Status);

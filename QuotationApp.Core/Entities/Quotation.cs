@@ -15,7 +15,7 @@ namespace QuotationApp.Core.Entities
 
         public string Product_Id { get; set; }
         public int MinOrderQty { get; set; }
-        public string UnitOfMeasure { get; set; }
+        public int  UnitOfMeasure { get; set; }
         public decimal QuotedPrice { get; set; }
 
         public int Customer_Id { get; set; }

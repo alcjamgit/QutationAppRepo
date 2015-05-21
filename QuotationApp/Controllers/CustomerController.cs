@@ -16,7 +16,7 @@ namespace QuotationApp.Web.Controllers
         private readonly ApplicationDbContext _db;
         public CustomerController()
         {
-            _db = new ApplicationDbContext();
+            _db = new ApplicationDbContext(System.Web.HttpContext.Current.User.Identity.Name);
         }
 
         public ActionResult Index()
