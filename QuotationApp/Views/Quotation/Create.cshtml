@@ -20,7 +20,7 @@
             @Html.LabelFor(model => model.Product_Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
 
-                @Html.DropDownListFor(model => model.Product_Id, Model.ProductList, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Product_Id, Model.ProductList, "--Select Product--", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Product_Id, "", new { @class = "text-danger" })
             </div>
         </div>

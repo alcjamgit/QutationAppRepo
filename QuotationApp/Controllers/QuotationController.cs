@@ -28,25 +28,6 @@ namespace QuotationApp.Web.Controllers
             _curUserService = new CurrentUserService();
         }
 
-        //public ActionResult Index()
-        //{
-        //    IQueryable<QuotationIndexVm> model = from q in _db.Quotations
-        //                                         join c in _db.Customers on
-        //                                         q.Customer_Id equals c.Id
-        //                                         orderby q.Id
-        //                                         select new QuotationIndexVm
-        //                                         {
-        //                                            Id = q.Id,
-        //                                            CustomerName = c.Name,
-        //                                            CustomerReference = q.CustomerReference,
-        //                                            Status = q.Status,
-        //                                            CreateDate = q.CreateDate,
-        //                                            CreatedBy = q.CreatedBy,
-        //                                         };
-        //    ViewBag.PageSize = 2;
-            
-        //    return View(model);
-        //}
 
         public ActionResult Index()
         {
@@ -59,7 +40,7 @@ namespace QuotationApp.Web.Controllers
                                                     Product_Description = q.Product.Description,
                                                     MinOrderQty = q.MinOrderQty,
                                                     QuotedPrice = q.QuotedPrice,
-                                                    CustomerName = c.Name,
+                                                    CustomerName = q.Customer.Name,
                                                     CustomerReference = q.CustomerReference,
                                                      
                                                     Status = q.Status,
@@ -93,8 +74,6 @@ namespace QuotationApp.Web.Controllers
 
         public ActionResult Edit(int id)
         {
-
-
             return View();
         }
 
@@ -131,6 +110,7 @@ namespace QuotationApp.Web.Controllers
             }
 
             //invalid model lets return the View Model
+            quoteVm.ProductList = new SelectList(_db.Products.AsQueryable(), "Id", "Description");
             quoteVm.CustomerSelectList = new SelectList(_db.Customers.AsQueryable(), "Id", "Name");
             return View(quoteVm);
         }

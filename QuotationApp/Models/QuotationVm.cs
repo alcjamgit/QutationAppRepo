@@ -64,9 +64,10 @@ namespace QuotationApp.Web.Models
 
     public class QuotationCreateVm
     {
-        [DisplayName("Part Number"), Required]
+        [DisplayName("Part Number"), Required] 
         public string Product_Id { get; set; }
-
+        [DisplayName("Part Description")]
+        public string Product_Description { get; set; }
         [DisplayName("Min Order"), Required]
         public int MinOrderQty { get; set; }
         [DisplayName("Unit of Measure"), Required]
@@ -79,17 +80,6 @@ namespace QuotationApp.Web.Models
         [DisplayName("Customer Reference")]
         [StringLength(128)]
         public string CustomerReference { get; set; }
-
-        [DisplayName("Part Number"), Required]
-        public string Product_Id { get; set; }
-        [DisplayName("Part Description"), Required]
-        public string Product_Description { get; set; }
-
-        [DisplayName("Min Order"), Required]
-        public int MinOrderQty { get; set; }
-        [DisplayName("Unit of Measure"), Required]
-        public string UnitOfMeasure { get; set; }
-        public decimal QuotedPrice { get; set; }
 
         [StringLength(128)]
         public string Comments { get; set; }

@@ -87,41 +87,9 @@
     <Compile Include="BusinessLayer\CurrentUserService.cs" />
     <Compile Include="DataLayer\ApplicationDbContext.cs" />
     <Compile Include="DataLayer\ApplicationUser.cs" />
-    <Compile Include="Migrations\201505140312115_Initial.cs" />
-    <Compile Include="Migrations\201505140312115_Initial.Designer.cs">
-      <DependentUpon>201505140312115_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505140406066_Update001.cs" />
-    <Compile Include="Migrations\201505140406066_Update001.Designer.cs">
-      <DependentUpon>201505140406066_Update001.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505140409556_Update002.cs" />
-    <Compile Include="Migrations\201505140409556_Update002.Designer.cs">
-      <DependentUpon>201505140409556_Update002.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505150113218_Update003.cs" />
-    <Compile Include="Migrations\201505150113218_Update003.Designer.cs">
-      <DependentUpon>201505150113218_Update003.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505150135362_Update004.cs" />
-    <Compile Include="Migrations\201505150135362_Update004.Designer.cs">
-      <DependentUpon>201505150135362_Update004.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505150136204_Update005.cs" />
-    <Compile Include="Migrations\201505150136204_Update005.Designer.cs">
-      <DependentUpon>201505150136204_Update005.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505171443042_Upadate006.cs" />
-    <Compile Include="Migrations\201505171443042_Upadate006.Designer.cs">
-      <DependentUpon>201505171443042_Upadate006.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505201247545_update-007.cs" />
-    <Compile Include="Migrations\201505201247545_update-007.Designer.cs">
-      <DependentUpon>201505201247545_update-007.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505201252550_update-009.cs" />
-    <Compile Include="Migrations\201505201252550_update-009.Designer.cs">
-      <DependentUpon>201505201252550_update-009.cs</DependentUpon>
+    <Compile Include="Migrations\201505220121592_Init.cs" />
+    <Compile Include="Migrations\201505220121592_Init.Designer.cs">
+      <DependentUpon>201505220121592_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -137,32 +105,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505140312115_Initial.resx">
-      <DependentUpon>201505140312115_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505140406066_Update001.resx">
-      <DependentUpon>201505140406066_Update001.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505140409556_Update002.resx">
-      <DependentUpon>201505140409556_Update002.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505150113218_Update003.resx">
-      <DependentUpon>201505150113218_Update003.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505150135362_Update004.resx">
-      <DependentUpon>201505150135362_Update004.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505150136204_Update005.resx">
-      <DependentUpon>201505150136204_Update005.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505171443042_Upadate006.resx">
-      <DependentUpon>201505171443042_Upadate006.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505201247545_update-007.resx">
-      <DependentUpon>201505201247545_update-007.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505201252550_update-009.resx">
-      <DependentUpon>201505201252550_update-009.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505220121592_Init.resx">
+      <DependentUpon>201505220121592_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
