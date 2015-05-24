@@ -26,7 +26,7 @@
                columns.Add(col => col.Id);
                columns.Add(col => col.Product_Id).Titled("Part Number");
                columns.Add(col => col.Product_Description).Titled("Part Description");
-               columns.Add(col => col.QuotedPrice).Titled("Price");
+               columns.Add(col => col.QuotedPrice).Titled("Price").Format("{0:$0.00}");
                columns.Add(col => col.MinOrderQty).Titled("Min Order Qty");
                columns.Add(col => col.CustomerName).Titled("Customer");
                columns.Add(col => col.CustomerReference).Titled("Reference");

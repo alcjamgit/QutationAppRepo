@@ -169,8 +169,9 @@ namespace QuotationApp.Web.Controllers
                     Product_Id = quoteVm.Product_Id,
                     Product_Description = quoteVm.Product_Description,
                     QuotedPrice = quoteVm.QuotedPrice,
-                    Customer_Id = quoteVm.Customer_Id,
+                    MinOrderQty = quoteVm.MinOrderQty,
                     UnitOfMeasure = (int)quoteVm.UnitOfMeasure,
+                    Customer_Id = quoteVm.Customer_Id,
                     CustomerReference = quoteVm.CustomerReference,
                     Comments = quoteVm.Comments,
                     Status = Enumerations.QuotationStatus.Created.GetDescription()
