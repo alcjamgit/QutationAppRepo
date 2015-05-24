@@ -114,7 +114,7 @@ namespace QuotationApp.Web.Models
         [DisplayName("Customer Reference")]
         [StringLength(128)]
         public string CustomerReference { get; set; }
-        [DisplayName("Unit of Measure"), Required]
+        [DisplayName("Status"), Required]
         public Enumerations.QuotationStatus Status { get; set; }
         [StringLength(128)]
         public string Comments { get; set; }

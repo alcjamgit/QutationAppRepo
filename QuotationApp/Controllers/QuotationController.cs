@@ -103,6 +103,7 @@ namespace QuotationApp.Web.Controllers
                             CustomerReference = q.CustomerReference,
                             Comments = q.Comments,
                             AttachmentFileName = q.AttachmentFileName,
+                            Status = Enumerations.QuotationStatus.InProgress,
                             CreatedBy = q.CreatedBy,
                             CreatedDate = q.CreateDate,
                         }).FirstOrDefault();
