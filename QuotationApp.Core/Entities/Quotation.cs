@@ -12,8 +12,10 @@ namespace QuotationApp.Core.Entities
     public class Quotation: IAuditable
     {
         public int Id { get; set; }
-
+        [StringLength(128)]
         public string Product_Id { get; set; }
+        [StringLength(128)]
+        public string Product_Description { get; set; }
         public int MinOrderQty { get; set; }
         public int  UnitOfMeasure { get; set; }
         public decimal QuotedPrice { get; set; }
@@ -26,6 +28,9 @@ namespace QuotationApp.Core.Entities
         [StringLength(64)]
         public string Status { get; set; }
 
+        [StringLength(128)]
+        public string AttachmentFileName { get; set; }
+
         #region IAuditable properties
         public string CreatedBy { get; set; }
         public DateTime CreateDate { get; set; }
@@ -36,8 +41,6 @@ namespace QuotationApp.Core.Entities
 
         [ForeignKey("Customer_Id")]
         public virtual Customer Customer { get; set; }
-        [ForeignKey("Product_Id")]
-        public virtual Product Product { get; set; }
         
     }
 }

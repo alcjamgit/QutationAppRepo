@@ -19,6 +19,6 @@ namespace QuotationApp.Core.Entities
         public string ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }
 
-        public virtual ICollection<QuotationLineItem> QuotationLineItems { get; set; }
+        
     }
 }

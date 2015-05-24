@@ -20,7 +20,9 @@ namespace QuotationApp.Web.Models
         public string CustomerReference { get; set; }
         [StringLength(64)]
         public string Status { get; set; }
-        
+
+
+
         [DisplayName("Created By")]
         public string CreatedBy { get; set; }
         [DisplayName("Create Date")]
@@ -52,11 +54,13 @@ namespace QuotationApp.Web.Models
         public string CustomerReference { get; set; }
         [StringLength(64)]
         public string Status { get; set; }
+        [StringLength(128)]
+        public string AttachmentFileName { get; set; }
 
         [DisplayName("Created By")]
         public string CreatedBy { get; set; }
         [DisplayName("Create Date")]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
         public IEnumerable<SelectListItem> Customers { get; set; }
 
     }
@@ -80,16 +84,75 @@ namespace QuotationApp.Web.Models
         [DisplayName("Customer Reference")]
         [StringLength(128)]
         public string CustomerReference { get; set; }
+        public HttpPostedFileBase PostedFile { get; set; }
 
         [StringLength(128)]
         public string Comments { get; set; }
 
         public IEnumerable<SelectListItem> CustomerSelectList { get; set; }
-        public IEnumerable<SelectListItem> ProductList { get; set; }
-        public IEnumerable<HttpPostedFileBase> PostedFile { get; set; }
+        public IEnumerable<SelectListItem> ProductList { get; set; }  
 
     }
 
+    public class QuotationEditVm
+    {
+        [HiddenInput]
+        public int Id { get; set; }
+        [DisplayName("Part Number"), Required]
+        public string Product_Id { get; set; }
+        [DisplayName("Part Description")]
+        public string Product_Description { get; set; }
+        [DisplayName("Min Order"), Required]
+        public int MinOrderQty { get; set; }
+        [DisplayName("Unit of Measure"), Required]
+        public Enumerations.UnitOfMeasure UnitOfMeasure { get; set; }
+        [DisplayName("Quoted Price"), Required]
+        public decimal QuotedPrice { get; set; }
+
+        [DisplayName("Customer"), Required]
+        public int Customer_Id { get; set; }
+        [DisplayName("Customer Reference")]
+        [StringLength(128)]
+        public string CustomerReference { get; set; }
+        [DisplayName("Unit of Measure"), Required]
+        public Enumerations.QuotationStatus Status { get; set; }
+        [StringLength(128)]
+        public string Comments { get; set; }
+
+        [StringLength(128)]
+        public string AttachmentFileName { get; set; }
+        [StringLength(128)]
+        [HiddenInput]
+        public string CreatedBy { get; set; }
+        [HiddenInput]
+        public DateTime CreatedDate { get; set; }
+
+        public IEnumerable<SelectListItem> CustomerSelectList { get; set; }
+        public IEnumerable<SelectListItem> ProductList { get; set; }
+
+    }
+
+    public class QuotationDeleteVm
+    {
+        [DisplayName("Quote Id")]
+        public int Id { get; set; }
+        [DisplayName("Part Number"), Required]
+        public string Product_Id { get; set; }
+        [DisplayName("Part Description")]
+        public string Product_Description { get; set; }
+
+        [DisplayName("Quoted Price"), Required]
+        public decimal QuotedPrice { get; set; }
+
+        [DisplayName("Unit of Measure"), Required]
+        public Enumerations.QuotationStatus Status { get; set; }
+
+        [StringLength(128)]
+        public string CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
+
+
+    }
     public class QuotationEditLineItemsVm
     {
         [DisplayName("Quote ID")]

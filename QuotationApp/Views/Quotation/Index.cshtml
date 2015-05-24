@@ -7,13 +7,22 @@
     
 }
 
-<h2>Quotation List</h2>
+<h2>Quotation List <small>You could filter using the icon filters in the column headers. Edit and Delete are on the left hand side of each row.</small></h2>
+
+
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+   @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary"})
+   
 </p>
 @Html.Grid(Model).Columns(columns =>
            {
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o =>
+                   @<b>
+                    @Html.ActionLink("Edit", "Edit", "Quotation", new { id = o.Id }, null)
+                    <span> | </span>
+                    @Html.ActionLink("Delete", "Delete", "Quotation", new { id = o.Id }, null)</b>
+                );
                columns.Add(col => col.Id);
                columns.Add(col => col.Product_Id).Titled("Part Number");
                columns.Add(col => col.Product_Description).Titled("Part Description");
@@ -22,27 +31,28 @@
                columns.Add(col => col.CustomerName).Titled("Customer");
                columns.Add(col => col.CustomerReference).Titled("Reference");
                columns.Add(col => col.CreatedBy).Titled("Created By");
-               columns.Add(col => col.CreateDate).Titled("Created");
+               columns.Add(col => col.CreateDate).Titled("Created").Filterable(true).
+                   SortInitialDirection(GridMvc.Sorting.GridSortDirection.Descending).Format("{0:MM/dd/yyyy}");
                columns.Add(col => col.Status);
-               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink("Edit", "Edit", "Quotation", new { id = o.Id }, null));
-               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Quotation", new { id = o.Id }, null));
+
            }).Filterable().Sortable(true).WithPaging(ViewBag.PageSize)
 
 
 
 @section scripts{
     <script src="~/Scripts/gridmvc.min.js"></script> 
-    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    @*<script src="~/Scripts/knockout.mapping-latest.js"></script>*@
 
     <script type="text/javascript">
-        $(function () {
-            var viewModel = ko.mapping.fromJS(@Html.Raw(JsonConvert.SerializeObject(Model)));
-            ko.applyBindings(viewModel);
-        });
+
+        $('.datepicker').datepicker({});
+
     </script>
 
 }
 @section styles{
   
     <link href="~/Content/Gridmvc.css" rel="stylesheet" />  
+    <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
 }

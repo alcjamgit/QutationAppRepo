@@ -49,5 +49,6 @@ namespace QuotationApp.Infrastructure.Migrations
                 manager.AddToRole(user.Id, userRole);
             }
         }
+
     }
 }
