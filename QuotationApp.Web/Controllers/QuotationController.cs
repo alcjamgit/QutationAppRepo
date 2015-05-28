@@ -18,6 +18,7 @@ namespace QuotationApp.Web.Controllers
     public class QuotationController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly GenericRepository<Quotation> _repo;
         private readonly ICurrentUserService _curUserService;
         public QuotationController(ApplicationDbContext db)
         {
@@ -27,6 +28,7 @@ namespace QuotationApp.Web.Controllers
         {
             //poor man's IOC for now
             _db = new ApplicationDbContext(System.Web.HttpContext.Current.User.Identity.Name);
+            _repo = new GenericRepository<Quotation>(_db);
             _curUserService = new CurrentUserService(System.Web.HttpContext.Current.User.Identity);
             
         }
@@ -35,7 +37,7 @@ namespace QuotationApp.Web.Controllers
         public ActionResult Index()
         {
             
-            IQueryable<QuotationIndexVm2> model = from q in _db.Quotations
+            IQueryable<QuotationIndexVm2> model = from q in _repo.GetAll()
                                                  orderby q.Id
                                                  select new QuotationIndexVm2
                                                  {
@@ -136,8 +138,8 @@ namespace QuotationApp.Web.Controllers
                 };
                 //model.AttachmentFileName = fileService.UploadFile(quoteVm.PostedFile.InputStream, null,
                 //    quoteVm.PostedFile.FileName, quoteVm.PostedFile.ContentLength);
-
-                _db.Entry(model).State = EntityState.Modified;
+                _repo.Update(model);
+                //_db.Entry(model).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }

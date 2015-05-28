@@ -89,6 +89,7 @@
     <Compile Include="BusinessLayer\CurrentUserService.cs" />
     <Compile Include="DataLayer\ApplicationDbContext.cs" />
     <Compile Include="DataLayer\ApplicationUser.cs" />
+    <Compile Include="DataLayer\GenericRepository.cs" />
     <Compile Include="Migrations\201505220121592_Init.cs" />
     <Compile Include="Migrations\201505220121592_Init.Designer.cs">
       <DependentUpon>201505220121592_Init.cs</DependentUpon>

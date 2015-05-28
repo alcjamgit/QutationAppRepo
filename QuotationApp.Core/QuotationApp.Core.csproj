@@ -55,6 +55,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specifications\IAuditable.cs" />
     <Compile Include="Specifications\ICurrentUserService.cs" />
+    <Compile Include="Specifications\IRepository.cs" />
+    <Compile Include="Specifications\IUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

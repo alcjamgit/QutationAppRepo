@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuotationApp.Web", "QuotationApp\QuotationApp.Web.csproj", "{46A62242-4F1E-453F-92B7-E2C56018BF6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuotationApp.Web", "QuotationApp.Web\QuotationApp.Web.csproj", "{46A62242-4F1E-453F-92B7-E2C56018BF6B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuotationApp.Core", "QuotationApp.Core\QuotationApp.Core.csproj", "{4CBFCA9A-98F9-4086-B18F-59820148E0C5}"
 EndProject
